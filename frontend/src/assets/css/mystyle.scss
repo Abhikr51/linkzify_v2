@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Antic&family=Philosopher&display=swap');
+
+$primary: #ee0979;
+$primary-dark: #8a164e;
+$black: #1e272e;
+//*{
+//}
+body {
+  background: white;
+}
+
+* {
+  color: $black;
+  //font-family: 'Antic', sans-serif;
+  font-family: 'Philosopher', sans-serif;
+}
+.text-primary{
+  color : $primary;
+}
+.card {
+  background: white;
+  border: 0;
+  box-shadow: 0px 0px 13px #0000001c;
+  padding: 10px;
+}
+
+.card-header {
+  background-color: white;
+  border-bottom-color: #0000001c;
+}
+
+.form-control {
+  background-color: white;
+  border-radius: 0;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.message-box {
+  background-color: $black;
+  min-height: 100px;
+  margin: 10px 0px;
+}
+
+.footer {
+  height: 30px;
+  background-color: $primary;
+}
+
+.blink {
+  color: red;
+  font-size: 30px;
+  animation: blink_animation .5s infinite;
+}
+
+@keyframes blink_animation {
+  25% {
+    color: red;
+  }
+  50% {
+    color: green;
+  }
+  75% {
+    color: yellow;
+  }
+  100% {
+    color: blue
+  }
+}
+
+.fireworks{
+  height: 100%;
+  width: 100%;
+  //position: fixed;
+  background-image: url("../images/fireworks.gif");
+  padding: 10px;
+}
