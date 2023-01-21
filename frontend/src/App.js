@@ -11,6 +11,7 @@ import Home from './views/Home';
 import Footer from './components/Footer';
 import Userpage from './views/Userpage';
 import Message from './views/Message';
+import GuestRoutes from './components/GuestRoutes';
 const App = () => {
   return (
     <React.Fragment>
@@ -20,9 +21,11 @@ const App = () => {
           <Route element={<PrivateRoutes />} >
             <Route path='/userpage' element={<Userpage />} />
           </Route>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/message' element={<Message />} />
+          <Route element={<GuestRoutes />} >
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/message/:username' element={<Message />} />
+          </Route>
           <Route path='/about' element={<About />} />
         </Routes>
         <Footer />

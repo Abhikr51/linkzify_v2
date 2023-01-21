@@ -1,15 +1,19 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import logo from "../assets/images//linkzify_v2_logo.svg"
+import logo from "../assets/images//linkzify_v2_logo_white.svg"
+import { setLogout } from '../store/actions/AuthActions'
 const Header = () => {
+  const auth = useSelector(s=>s.auth)
+  const dispatch = useDispatch()
   return (
     <React.Fragment>
       <header>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <div className="container-fluid">
-            <NavLink className="navbar-brand d-flex" to="/">
+            <NavLink className="navbar-brand d-flex align-items-center" to="/">
               
-              <img src={logo} width='30' alt="linkzify logo" />
+              <img src={logo} width='45' alt="linkzify logo" />
               <h1 style={{margin : 0 , marginLeft  :10}} >Linkzify _ v2</h1>
             </NavLink>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -22,16 +26,22 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink className="nav-link" aria-current="page" to={'/'}>Secret Message</NavLink>
                 </li>
-                {/* <li className="nav-item">
-                  <NavLink className="nav-link" disabled aria-current="page"
-                    to="/">Abhi</NavLink>
-                </li> */}
-                {/* <li className="nav-item">
-                  <button className="btn nav-link" aria-current="page" to={"Logout"}>Logout</button>
-                </li> */}
-                <li className="nav-item">
-                  <NavLink className="nav-link" aria-current="page" to={"Login"}>Login</NavLink>
-                </li>
+                {
+                  auth.loggedIn ?
+                  <>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" disabled aria-current="page"
+                        to="/">{auth.user.name}</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <button onClick={()=>dispatch(setLogout())} className="btn nav-link" aria-current="page" >Logout</button>
+                    </li>
+                  </>
+                  : 
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to={"Login"}>Login</NavLink>
+                  </li>
+                }
               </ul>
             </div>
           </div>

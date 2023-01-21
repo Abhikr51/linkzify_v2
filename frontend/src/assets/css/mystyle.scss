@@ -40,7 +40,7 @@ body {
 
 .message-box {
   background-color: $black;
-  min-height: 100px;
+  // min-height: 100px;
   margin: 10px 0px;
 }
 
@@ -76,4 +76,28 @@ body {
   //position: fixed;
   background-image: url("../images/fireworks.gif");
   padding: 10px;
+}
+
+//loader css
+.loader {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.loader-after {
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  
+  animation: loader 1.2s linear infinite;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

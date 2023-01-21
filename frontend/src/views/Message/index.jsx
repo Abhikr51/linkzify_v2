@@ -1,6 +1,26 @@
+import axios from 'axios';
 import React from 'react'
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { baseURL, sendMessageURL } from '../../config/AppData';
 
 const Message = () => {
+  const [message , setMessage] = useState("")
+  const params = useParams()
+  const user = useSelector(s=>s.auth.user)
+  const navigate = useNavigate()
+  const sendMessage = (event)=>{
+    event.preventDefault();
+    axios.post(baseURL + sendMessageURL + "/" + atob(params.username),{message}).then(({data})=>{
+      if(data.status){
+        alert(data.msg);
+        navigate('/')
+      }
+    }).catch(err=>{
+      console.log("sendMessage", err);
+    })
+  }
   return (
     <React.Fragment>
       <div className="fireworks">
@@ -12,9 +32,9 @@ const Message = () => {
             <div id="greeting box" className="card">
               <h3 className="card-header text-center">Secret Message</h3>
               <div className="card-body">
-                <form action="#" method="post">
+                <form onSubmit={sendMessage}>
                   <div className="form-group">
-                    <textarea rows="6" required type="text" name="message" className="form-control"
+                    <textarea onChange={(e)=>setMessage(e.target.value)} value={message} rows="6" required  name="message" className="form-control"
                       placeholder="Enter Your Secret message"></textarea>
                   </div>
                   <div className="d-grid gap-2 my-3">
@@ -23,12 +43,12 @@ const Message = () => {
                 </form>
                 <ul>
                   <li>Let's play and have fun with <span
-                    className="text-primary">{'user_details.first_name'}</span>.
+                    className="text-primary">{user.name}</span>.
                   </li>
                   <li>Send your message secretly to <span
-                    className="text-primary">{'user_details.first_name'}</span>.
+                    className="text-primary">{user.name}</span>.
                   </li>
-                  <li><span className="text-primary">{'user_details.first_name'}</span> will never know who
+                  <li><span className="text-primary">{user.name}</span> will never know who
                     messaged.
                   </li>
                 </ul>

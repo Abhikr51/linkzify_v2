@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend" : "cd frontend && yarn start",
-    "backend" : "cd backend && nodemon",
-    "dev" : "concurrently \"yarn run frontend\" \"yarn run backend\""
+    "frontend": "cd frontend && yarn start",
+    "backend": "cd backend && nodemon",
+    "dev": "concurrently \"yarn run frontend\" \"yarn run backend\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^7.6.0",
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^9.0.0"
   }
 }
