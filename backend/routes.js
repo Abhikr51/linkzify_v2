@@ -60,6 +60,6 @@ app.get("/*",(_,res)=>{
 
 // ========= server =========
 app.listen(
-    process.env.PORT,
-    ()=>console.log(`Backend started at port ${process.env.PORT}`.green)
+    8001,
+    ()=>console.log(`Backend started at port ${8001}`.green)
 )
