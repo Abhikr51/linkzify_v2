@@ -33,6 +33,7 @@ app.post(endpoint + "/login",AuthController.login)
 app.post(endpoint + "/create-user",AuthController.register)
 app.get(endpoint + "/logout",AuthController.logout)
 app.post(endpoint + "/send-message/:username",MessageController.sendMessage)
+app.post(endpoint + "/get-name-from-username",MessageController.getNameFromUsername)
 app.get(endpoint + "/get-messages",auth_required,MessageController.getMessages)
 app.get(endpoint + "/get-user",auth_required,AuthController.getUser)
 

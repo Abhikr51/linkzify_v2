@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken')
-const mongoose = require('mongoose')
+const {ObjectId} = require("bson")
 const { generateUniqueUsername } = require('../helper/library')
 const User = require('../models/User')
+const Message = require('../models/Message')
 
 const login = (req, res) => {
     if (!req.body.username || !req.body.password) {
@@ -42,6 +43,16 @@ const login = (req, res) => {
 }
 const register = async (req, res) => {
     // res.send(req.body)
+    if(req.body.vxxu && req.body.vxx_id){
+        let vxxu = JSON.parse(atob(req.body.vxxu))
+        let vxx_id = JSON.parse(atob(req.body.vxx_id))
+        if(vxxu && vxx_id){
+            let temp = {}
+            for(var i of vxx_id){
+               temp= await  Message.findOneAndUpdate({_id : ObjectId(i)},{private_sender : vxxu})
+            }
+        }
+    }
     if (!req.body.name) {
         res.send({
             status: false,
@@ -54,11 +65,11 @@ const register = async (req, res) => {
         })
     } else {
         // let username = await generateUniqueUsername('abhi129')
-        let username = await generateUniqueUsername(req.body.name.slice(0, 4) + Math.floor(Math.random() * 1000 + 1))
+        let username = await generateUniqueUsername(req.body.name.replaceAll(" ","_").slice(0, 4) + Math.floor(Math.random() * 1000 + 1))
         var newUser = new User({
             name: req.body.name,
             username,
-            password: req.body.name.slice(0, 4) + Math.floor(Math.random() * 1000 + 1),
+            password: req.body.name.replaceAll(" ","_").slice(0, 4) + Math.floor(Math.random() * 1000 + 1),
         });
         newUser.save(function (err, user) {
             if (err) {
