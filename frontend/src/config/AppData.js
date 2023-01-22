@@ -1,4 +1,5 @@
-const base = "http://localhost:8001"
+const base = "http://13.231.246.144:8001"
+// const base = "http://localhost:8001"
 export const hostURL  = base;
 export const baseURL = base + "/api/v1"
 
